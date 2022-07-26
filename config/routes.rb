@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  root 'users#tasks'
+
   get 'users/:user_id/all_tasks', to: "users#all_tasks", as: "all_tasks"
   get 'users/:user_id/tasks', to: "users#tasks", as: "user_tasks"
   
