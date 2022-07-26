@@ -17,8 +17,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_012320) do
   create_table "taggables", force: :cascade do |t|
     t.bigint "task_id", null: false
     t.bigint "tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_taggables_on_tag_id"
     t.index ["task_id"], name: "index_taggables_on_task_id"
   end
@@ -26,19 +24,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_012320) do
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.text "title"
-    t.string "status"
-    t.integer "level"
-    t.datetime "deadline"
+    t.text "title", null: false
+    t.string "status", default: "to_do", null: false
+    t.integer "level", null: false
+    t.datetime "deadline", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -49,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_012320) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
+    t.datetime "confirmed_at", default: "2022-07-26 20:10:01"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
