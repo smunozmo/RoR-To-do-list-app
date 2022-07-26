@@ -5,15 +5,21 @@ class TagsController < ApplicationController
     end
 
     def create
-        @tag = Tag.new
-        @tag.user_id = params[:user_id]
-        @tag.name = params[:tag][:name]
-        if @tag.save
-            redirect_to new_task_url
-            flash[:alert] = 'Success!'
+        @duplicate = Tag.find_by(name: params[:tag][:name])
+        if !@duplicate.nil? || @duplicate.user_id == params[:user_id].to_i
+            flash[:alert] = 'Tag already exists. Please try another name.'
+            redirect_to new_tag_url
         else
-            flash[:alert] = 'Error'
-            render :new
+            @tag = Tag.new
+            @tag.name = params[:tag][:name]
+            @tag.user_id = params[:user_id]
+            if @tag.save
+                redirect_to user_tags_url
+                flash[:alert] = 'Success!'
+            else
+                flash[:alert] = 'Error'
+                render :new
+            end
         end
     end
 end

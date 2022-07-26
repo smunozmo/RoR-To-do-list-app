@@ -10,6 +10,9 @@ class TasksController < ApplicationController
     if params[:taggable].nil?
       flash[:alert] = 'Please choose at least one tag and try again.'
       redirect_to new_task_url
+    elsif params[:taggable][:tag_ids].count > 3
+      flash[:alert] = 'Please select no more than three tags.'
+      redirect_to new_task_url
     else
       @task.user_id = params[:user_id]
       @task.title = params[:task][:title]

@@ -12,12 +12,14 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="bg-light">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="text-center bg-info">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-          <div class="card mt-5">
+          <div class="card mt-2">
             <%= yield %>
           </div>
         </div>
