@@ -1,2 +1,32 @@
-<h1>Tasks#new</h1>
-<p>Find me in app/views/tasks/new.html.erb</p>
+
+<%= form_with model: @task, url: new_task_path(user_id: @user), method: :post, class: 'form' do |form| %>
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_area :title %>
+  </div>
+
+  <div>
+    <%= form.label :priority, style: "display: block" %>
+    <%= form.select :level, ['1', '2', '3', '4', '5'] %>
+  </div>
+  <div>
+    <%= form.label :deadline, style: "display: block" %>
+    <%= form.datetime_field :deadline %>
+  </div>
+  
+  <div>
+    <%= form.label 'Tags:', class: 'form-label pb-1' %><br />
+    <% for tag in @tags %>
+      <%= check_box_tag "user[tag_ids][]", tag.name, @user.tags.include?(tag), class: 'form-check-input' %>
+      <%= form.label tag.name, class: 'form-check-label' %><br />
+    <% end %>
+  </div>
+  
+  <div>
+    <%= link_to "New tag", new_task_path %>
+  </div>
+  
+    <%= form.submit %>
+  </div>
+
+<% end %>

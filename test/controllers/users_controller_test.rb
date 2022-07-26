@@ -1,8 +1,8 @@
 require "test_helper"
 
-class UserControllerTest < ActionDispatch::IntegrationTest
+class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get tasks" do
-    get user_tasks_url
+    get users_tasks_url
     assert_response :success
   end
 end
