@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   def tasks
-    @user = User.find(current_user.id)
-    @tasks = Task.joins(:user).where(users: { id: current_user.id })
+    @user = User.find(params[:user_id])
+    @tasks = Task.joins(:user).where(users: { id: params[:user_id] })
   end
 end
