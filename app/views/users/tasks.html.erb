@@ -39,7 +39,7 @@
             <p class="fw-lighter link-primary lh-1 small-text">
               <% @tags.each do |tag| %>
                 <% @taggables.each do |taggable| %>
-                  <%= taggable.tag_id == tag.id && taggable.task_id == task.id ? (link_to tag.name, new_task_path) : '' %>
+                  <%= taggable.tag_id == tag.id && taggable.task_id == task.id ? (link_to tag.name, filter_tag_path(tag_id: tag.id)) : '' %>
                 <% end %>
               <% end %>
             </p>
