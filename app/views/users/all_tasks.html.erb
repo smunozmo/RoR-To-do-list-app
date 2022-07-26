@@ -43,7 +43,7 @@
           <p class="fw-lighter link-primary lh-1 small-text">
             <% @tags.each do |tag| %>
               <% @taggables.each do |taggable| %>
-                <%= taggable.tag_id == tag.id && taggable.task_id == task.id ? (link_to tag.name, filter_tag_path(tag_id: tag.id)) : '' %>
+                <%= taggable.tag_id == tag.id && taggable.task_id == task.id ? (link_to tag.name, all_tasks_path(filter_by_tag_id: tag.id)) : '' %>
               <% end %>
             <% end %>
             <span class="badge rounded-pill test-muted small-text">

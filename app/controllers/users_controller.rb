@@ -5,6 +5,9 @@ class UsersController < ApplicationController
     @tasks = Task.joins(:user).where(users: { id: 1 }).where(status: 'to_do').where('deadline > ?', @deadline_limit_date).order(deadline: :asc, level: :desc)
     @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
     @taggables = Taggable.all
+    unless params[:filter_by_tag_id].nil?
+      @tasks = Task.joins(:taggables).where(taggables: { tag_id: params[:filter_by_tag_id] }).joins(:user).where(users: { id: 1 }).where(status: 'to_do').where('deadline > ?', @deadline_limit_date).order(deadline: :asc, level: :desc)
+    end
   end
   
   def all_tasks
@@ -12,23 +15,8 @@ class UsersController < ApplicationController
     @tasks = Task.joins(:user).where(users: { id: params[:user_id] })
     @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
     @taggables = Taggable.all
-  end
-
-  def filter_tag
-    @user = User.find(params[:user_id])
-    @tasks = Task.joins(:user).where(users: { id: params[:user_id] })
-    @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
-    @taggables = Taggable.all
-    @filter_tag = Tag.find(params[:tag_id])
-  end
-
-  def tags
-    @user = User.find(params[:user_id])
-    @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
-  end
-
-  #delete
-  def taggables
-    @taggables = Taggable.all
+    unless params[:filter_by_tag_id].nil?
+      @tasks = Task.joins(:taggables).where(taggables: { tag_id: params[:filter_by_tag_id] })
+    end
   end
 end
