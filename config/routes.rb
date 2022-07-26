@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  get 'tasks/new'
+  get 'tasks/create'
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'users/:user_id/tasks', to: "user#tasks", as: "user_tasks"
+  get 'users/:user_id/tasks/new', to: "task#new", as: "new_task"
+  post 'users/:user_id/tasks/new', to: "task#create", as: "create_task"
 end
