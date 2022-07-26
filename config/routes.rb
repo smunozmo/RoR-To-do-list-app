@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :users
+  
   get 'users/:user_id/tasks', to: "users#tasks", as: "user_tasks"
   get 'users/:user_id/tags', to: "users#tags", as: "user_tags"
   get "users/:user_id/tags/:tag_id/tasks", to: "users#filter_tag", as: "filter_tag"

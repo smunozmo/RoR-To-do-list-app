@@ -1,32 +1,47 @@
+<div class="card-header shadow-sm">
+  <div class="row align-items-start border-bottom border-light p-3 small-text text-muted">
+    <div class="col-2 align-items-start pt-1">
+      <h5>New task</h5>
+    </div>
+    <div class="col-2 text-start">
+      <span class="btn btn-outline-primary btn-sm text-decoration-none">
+        <%= link_to "< Go back", user_tasks_path %>
+      </span>
+    </div>
+    <div class="col text-end">
+      <p class="text-muted  small-text">Welcome back <%= @user.email %> </p>
+    </div>
+  </div>
+</div>
+<div id="tasks" class="card-body">
+  <%= form_with model: @task, url: new_task_path(user_id: params[:user_id]), method: :post, class: 'form' do |form| %>
+    <div>
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_area :title, :required => true, class: 'form-control' %>
+    </div>
 
-<%= form_with model: @task, url: new_task_path(user_id: params[:user_id]), method: :post, class: 'form' do |form| %>
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_area :title, :required => true %>
-  </div>
+    <div>
+      <%= form.label :priority, class: 'form-label pt-3', style: "display: block" %>
+      <%= form.select :level, ['1', '2', '3', '4', '5'], :required => true, class: 'form-control' %>
+    </div>
+    <div>
+      <%= form.label :deadline, class: 'form-label pt-3' %>
+      <%= form.datetime_field :deadline, :required => true, class: 'form-control' %>
+    </div>
 
-  <div>
-    <%= form.label :priority, style: "display: block" %>
-    <%= form.select :level, ['1', '2', '3', '4', '5'], :required => true %>
-  </div>
-  <div>
-    <%= form.label :deadline, style: "display: block" %>
-    <%= form.datetime_field :deadline, :required => true %>
-  </div>
-  
-  <div>
-    <%= form.label 'Tags:', class: 'form-label pb-1' %><br />
-    <% for tag in @tags %>
-      <%= check_box_tag "taggable[tag_ids][]", tag.id, @user.tags.include?(tag), class: 'form-check-input' %>
-      <%= form.label tag.name, class: 'form-check-label' %><br />
-    <% end %>
-  </div>
-  
-  <div>
-    <%= link_to "Add new tag", new_tag_path %>
-  </div>
-  
-    <%= form.submit %>
-  </div>
+    <div>
+      <%= form.label 'Tags:', class: 'form-label pb-1 pt-3' %><br />
+      <% for tag in @tags %>
+        <%= check_box_tag "taggable[tag_ids][]", tag.id, @user.tags.include?(tag), class: 'form-check-input' %>
+        <%= form.label tag.name, class: 'form-check-label' %><br />
+      <% end %>
+    </div>
 
-<% end %>
+    <div class="py-3">
+      <%= link_to "Add new tag", new_tag_path %>
+    </div>
+
+      <%= form.submit "Add task", class: 'btn btn-primary px-4 rounded-3' %>
+    </div>
+  <% end %>
+</div>

@@ -1,19 +1,18 @@
-
-  <div class="card-header shadow-sm">
-    <div class="row align-items-start border-bottom border-light p-3 small-text text-muted">
-      <div class="col-2 align-items-start pt-1">
-        <h5>My Tasks</h5>
-      </div>
-      <div class="col-2 text-start">
-        <span class="btn btn-outline-primary btn-sm text-decoration-none">
-          <%= link_to "+ Add task", new_task_path %>
-        </span>
-      </div>
-      <div class="col text-end">
-        <p class="text-muted  small-text">Welcome back <%= @user.email %> </p>
-      </div>
+<div class="card-header shadow-sm">
+  <div class="row align-items-start border-bottom border-light p-3 small-text text-muted">
+    <div class="col-2 align-items-start pt-1">
+      <h5>My Tasks</h5>
+    </div>
+    <div class="col-2 text-start">
+      <span class="btn btn-outline-primary btn-sm text-decoration-none">
+        <%= link_to "+ Add task", new_task_path %>
+      </span>
+    </div>
+    <div class="col text-end">
+      <p class="text-muted  small-text">Welcome back <%= @user.email %> </p>
     </div>
   </div>
+</div>
 <div id="tasks" class="card-body">
     <div class="container p-0 m-0">
       <div class="row align-items-start border-bottom border-light shadow-sm pb-2 px-3 small-text text-muted">
