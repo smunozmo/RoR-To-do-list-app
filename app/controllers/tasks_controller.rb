@@ -36,4 +36,15 @@ class TasksController < ApplicationController
       end
     end
   end
+
+  def change_status
+    @task = Task.find(params[:id])
+    @task.update(status: params[:status])
+
+
+    redirect_to user_tasks_path(user_id: current_user.id)
+    flash[:alert] = "Status updated to #{@task.status}"
+  end
+
+
 end
