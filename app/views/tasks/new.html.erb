@@ -1,29 +1,29 @@
 
-<%= form_with model: @task, url: new_task_path(user_id: @user), method: :post, class: 'form' do |form| %>
+<%= form_with model: @task, url: new_task_path(user_id: params[:user_id]), method: :post, class: 'form' do |form| %>
   <div>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_area :title %>
+    <%= form.text_area :title, :required => true %>
   </div>
 
   <div>
     <%= form.label :priority, style: "display: block" %>
-    <%= form.select :level, ['1', '2', '3', '4', '5'] %>
+    <%= form.select :level, ['1', '2', '3', '4', '5'], :required => true %>
   </div>
   <div>
     <%= form.label :deadline, style: "display: block" %>
-    <%= form.datetime_field :deadline %>
+    <%= form.datetime_field :deadline, :required => true %>
   </div>
   
   <div>
     <%= form.label 'Tags:', class: 'form-label pb-1' %><br />
     <% for tag in @tags %>
-      <%= check_box_tag "user[tag_ids][]", tag.name, @user.tags.include?(tag), class: 'form-check-input' %>
+      <%= check_box_tag "taggable[tag_ids][]", tag.id, @user.tags.include?(tag), class: 'form-check-input' %>
       <%= form.label tag.name, class: 'form-check-label' %><br />
     <% end %>
   </div>
   
   <div>
-    <%= link_to "New tag", new_task_path %>
+    <%= link_to "Add new tag", new_tag_path %>
   </div>
   
     <%= form.submit %>

@@ -20,7 +20,7 @@
         <div class="col align-items-start">
           To-do 
         </div>
-        <div class="col-2 text-center">
+        <div class="col-1 text-center">
           Priority
         </div>
         <div class="col-2 text-center">
@@ -37,9 +37,11 @@
               <%= task.title %>
             </p>
             <p class="fw-lighter link-primary lh-1 small-text">
-              <%# @tags.each do |tag| %>
-                <%#= tag.task_id == task.id ? (link_to tag.name, tasks_filter_path(tag_id: tag.id)) : '' %>
-              <%# end %>
+              <% @tags.each do |tag| %>
+                <% @taggables.each do |taggable| %>
+                  <%= taggable.tag_id == tag.id && taggable.task_id == task.id ? (link_to tag.name, new_task_path) : '' %>
+                <% end %>
+              <% end %>
             </p>
           </div>
           <div class="col-1 text-center">

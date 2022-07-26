@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/tasks'
+  
   devise_for :users
   get 'users/:user_id/tasks', to: "users#tasks", as: "user_tasks"
   get 'users/:user_id/tags', to: "users#tags", as: "user_tags"
@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   
   get 'users/:user_id/tags/new', to: "tags#new", as: "new_tag"
   post 'users/:user_id/tags/new', to: "tags#create", as: "create_tag"
+
+  # delete
+  get 'users/:user_id/taggables', to: "users#taggables", as: "user_taggables" 
 end

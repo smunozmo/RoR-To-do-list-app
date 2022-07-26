@@ -9,7 +9,7 @@ class TagsController < ApplicationController
         @tag.user_id = params[:user_id]
         @tag.name = params[:tag][:name]
         if @tag.save
-            redirect_to user_tags_url
+            redirect_to new_task_url
             flash[:alert] = 'Success!'
         else
             flash[:alert] = 'Error'
