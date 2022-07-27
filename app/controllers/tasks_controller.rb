@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+
   def new
     @task = Task.new
     @user = User.find(params[:user_id])
@@ -7,14 +8,16 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new
-    if params[:taggable].nil?
-      flash[:alert] = 'Please choose at least one tag and try again.'
+    
+    if params[:taggable].blank?
+      flash[:alert] = 'Please choose o create at least one tag and try again.'
       redirect_to new_task_url
     elsif params[:taggable][:tag_ids].count > 3
       flash[:alert] = 'Please select no more than three tags.'
       redirect_to new_task_url
     else
+
+      @task = Task.new
       @task.user_id = params[:user_id]
       @task.title = params[:task][:title]
       @task.level = params[:task][:level]
@@ -29,10 +32,10 @@ class TasksController < ApplicationController
         end
 
         redirect_to user_tasks_url
-        flash[:alert] = 'Success!'
+        flash[:alert] = 'Task successfully created!'
 
       else
-        flash[:alert] = 'Error'
+        flash[:alert] = 'Oops! Something went wrong.'
         render :new
       end
     end
