@@ -8,7 +8,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    
     if params[:taggable].blank?
       flash[:alert] = 'Please choose o create at least one tag and try again.'
       redirect_to new_task_url
@@ -22,7 +21,7 @@ class TasksController < ApplicationController
       @task.title = params[:task][:title]
       @task.level = params[:task][:level]
       @task.deadline = params[:task][:deadline]
-      
+
       if @task.save
         params[:taggable][:tag_ids].each do |taggable|
           @taggable = Taggable.new
@@ -45,10 +44,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.update(status: params[:status])
 
-
     redirect_to user_tasks_path(user_id: current_user.id)
     flash[:alert] = "Status updated to #{@task.status}"
   end
-
-
 end
