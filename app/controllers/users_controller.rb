@@ -17,9 +17,8 @@ class UsersController < ApplicationController
   end
 
   def all_tasks
-
     unauthorized?
-
+    
     @user = User.find(params[:user_id])
     @tasks = Task.joins(:user).where(users: { id: params[:user_id] }).order(deadline: :asc, level: :desc)
     @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
@@ -27,5 +26,11 @@ class UsersController < ApplicationController
     unless params[:filter_by_tag_id].nil?
       @tasks = Task.joins(:taggables).where(taggables: { tag_id: params[:filter_by_tag_id] })
     end
+  end
+  
+  private
+
+  def user_params
+    params.require(:user).permit(:email)
   end
 end

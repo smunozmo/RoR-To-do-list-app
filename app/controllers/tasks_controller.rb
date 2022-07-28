@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-
+  include TasksHelper
+  include UsersHelper
   def new
     @task = Task.new
     @user = User.find(params[:user_id])
@@ -46,5 +47,30 @@ class TasksController < ApplicationController
 
     redirect_to user_tasks_path(user_id: current_user.id)
     flash[:alert] = "Status updated to #{@task.status}"
+  end
+
+  def filter
+    unauthorized?
+    @user = User.find(params[:user_id])
+    @tasks = Task.joins(:user).where(users: { id: params[:user_id] }).order(deadline: :asc, level: :desc)
+    @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
+    @taggables = Taggable.all
+   
+    #see TasksHelper
+    filter_by_params
+ 
+  end
+
+  def new_filter
+    @user = User.find(params[:user_id])
+    @tasks = Task.joins(:user).where(users: { id: params[:user_id] }).order(deadline: :asc, level: :desc)
+    @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
+    @taggables = Taggable.all
+  end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:title, :status, :level, :deadline, :user_id)
   end
 end

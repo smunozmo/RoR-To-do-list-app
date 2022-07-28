@@ -76,3 +76,7 @@ gem 'devise', '~> 4.8'
 gem 'rubocop', '~> 1.32'
 
 gem 'rubocop-rails', '~> 2.15'
+
+gem 'bullet', '~> 7.0'
+
+gem "rspec-rails", "~> 5.1"

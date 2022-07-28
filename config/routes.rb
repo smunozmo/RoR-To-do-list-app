@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   
   get 'tasks/:id/change_status', to: "tasks#change_status", as: "change_status"
   get 'users/:user_id/tasks/new', to: "tasks#new", as: "new_task"
+  get 'users/:user_id/tasks/filter', to: "tasks#filter", as: "filter_tasks"
+  get 'users/:user_id/tasks/new_filter', to: "tasks#new_filter", as: "new_filter"
   post 'users/:user_id/tasks/new', to: "tasks#create", as: "create_task"
   
   get 'users/:user_id/tags/new', to: "tags#new", as: "new_tag"

@@ -7,8 +7,11 @@ module UsersHelper
   end
 
   def filter_by_tag_id
-    @tasks = Task.joins(:taggables).where(taggables: { tag_id: params[:filter_by_tag_id] }).joins(:user).where(users: { id: 1 }).where(status: 'to_do').where('deadline > ?', @deadline_limit_date).order(
+    @tasks = Task.joins(:taggables).where(taggables: { tag_id: params[:filter_by_tag_id] }).joins(:user).where(users: { id: current_user.id }).where(status: 'to_do').where('deadline > ?', @deadline_limit_date).order(
       deadline: :asc, level: :desc
     )
   end
+
 end
+
+

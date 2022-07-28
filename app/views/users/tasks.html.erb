@@ -13,6 +13,11 @@
         <%= link_to "See all tasks", all_tasks_path %>
       </span>
     </div>
+    <div class="col-2 text-start pt-2">
+      <span class="text-primary text-decoration-none">
+        <%= link_to "Filter tasks", new_filter_path %>
+      </span>
+    </div>
     <div class="col text-end">
       <p class="text-muted  small-text">Welcome back <%= @user.email %> | <%= link_to "logout", destroy_user_session_path %> </p>
     </div>

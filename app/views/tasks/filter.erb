@@ -1,21 +1,16 @@
 <div class="card-header shadow-sm">
   <div class="row align-items-start border-bottom border-light p-3 small-text text-muted">
     <div class="col-2 align-items-start pt-1">
-      <h5>My Tasks</h5>
+      <h5>Filter Tasks</h5>
     </div>
     <div class="col-2 text-start">
       <span class="btn btn-outline-primary btn-sm text-decoration-none">
-        <%= link_to "+ Add task", new_task_path %>
+        <%= link_to "< My tasks", user_tasks_path %>
       </span>
     </div>
     <div class="col-2 text-start pt-2">
       <span class="text-primary text-decoration-none">
-        <%= link_to "< Go back", user_tasks_path %>
-      </span>
-    </div>
-    <div class="col-2 text-start pt-2">
-      <span class="text-primary text-decoration-none">
-        <%= link_to "Filter tasks", new_filter_path %>
+        <%= link_to "< Go back", new_filter_path %>
       </span>
     </div>
     <div class="col text-end">

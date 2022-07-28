@@ -29,9 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_012320) do
 
   create_table "tasks", force: :cascade do |t|
     t.text "title", null: false
-    t.string "status", default: "to_do", null: false
-    t.integer "level", null: false
-    t.datetime "deadline", null: false
+    t.string "status", default: "to_do"
+    t.integer "level"
+    t.datetime "deadline"
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_012320) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "confirmation_token"
-    t.datetime "confirmed_at", default: "2022-07-26 20:10:01"
+    t.datetime "confirmed_at", default: "2022-07-27 05:28:31"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
