@@ -1,4 +1,4 @@
-# Budget App
+# Ruby on Rails To-do List App
 
 This a Ruby on Rails based to-do list app, an interactive project where you can add tasks, tags and filter by attributes with user registration and login features.
 
