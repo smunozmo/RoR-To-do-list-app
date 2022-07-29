@@ -8,7 +8,7 @@ This a Ruby on Rails based to-do list app, an interactive project where you can 
 
 ## Live Demo
 
-https://rails-to-do-list-app.herokuapp.com/
+https://ancient-sierra-59542.herokuapp.com/
 
 ## Built With
 
