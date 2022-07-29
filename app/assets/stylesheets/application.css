@@ -14,10 +14,10 @@
  *= require_self
  */
 
- .small-text {
-    font-size: 0.8em;
-  }
- 
-  a {
-     text-decoration: none !important;
-  }
+.small-text {
+  font-size: 0.8em;
+}
+
+a {
+  text-decoration: none !important;
+}
