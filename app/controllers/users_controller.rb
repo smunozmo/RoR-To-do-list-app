@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @deadline_limit_date = Time.now + 7.days
     @tasks = Task.joins(:user)
       .where(users: { id: params[:user_id] })
-      .where(status: 'to_do').where('deadline > ?', @deadline_limit_date)
+      .where(status: 'to_do').where('deadline < ?', @deadline_limit_date)
       .order(deadline: :asc, level: :desc)
     @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
     @taggables = Taggable.all
