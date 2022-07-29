@@ -8,7 +8,7 @@ This a Ruby on Rails based to-do list app, an interactive project where you can 
 
 ## Live Demo
 
-https://floating-thicket-39409.herokuapp.com/
+https://rails-to-do-list-app.herokuapp.com/
 
 ## Built With
 
