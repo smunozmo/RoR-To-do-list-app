@@ -1,0 +1,39 @@
+<div class="card-header shadow-sm">
+  <div class="row align-items-start border-bottom border-light p-3 small-text text-muted">
+    <div class="col-2 align-items-start pt-1">
+      <h5>Filter tasks</h5>
+    </div>
+    <div class="col-2 text-start">
+      <span class="btn btn-outline-primary btn-sm text-decoration-none">
+        <%= link_to "< My tasks", user_tasks_path %>
+      </span>
+    </div>
+    <div class="col text-end">
+      <p class="text-muted  small-text">Welcome back <%= @user.email %> </p>
+    </div>
+  </div>
+</div>
+<div id="tasks" class="card-body">
+  <%=  form_tag filter_tasks_url, method: :get, class: 'form' do |form| %>
+
+  <div class='form-group'>
+    <label class="form-label">Title:</label>
+    <%= text_field_tag :title, "", class: 'form-control' %>
+
+    <label class="form-label pt-3">Priority:</label>
+    <%= select_tag :level, options_for_select(["1", "2", "3", "4", "5"], "Level"), include_blank: true %>
+
+    <label class="form-label ps-3 pt-3">Status:</label>
+    <%= select_tag "status", options_for_select(["to_do", "done"], "Status"), include_blank: true %>
+
+    <label class="form-label ps-3 pt-3">Tag:</label>
+    <%= select_tag "tag_id", options_from_collection_for_select(@tags, "id", "name"), include_blank: true %>
+  </div>
+
+  <div class='py-3'>
+    <%= submit_tag 'Search tasks', class: 'btn btn-primary px-4 rounded-3'  %>
+  </div>
+<% end %>
+
+    
+</div>

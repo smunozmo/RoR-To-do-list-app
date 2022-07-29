@@ -1,0 +1,76 @@
+<div class="card-header shadow-sm">
+  <div class="row align-items-start border-bottom border-light p-3 small-text text-muted">
+    <div class="col-2 align-items-start pt-1">
+      <h5>My Tasks</h5>
+    </div>
+    <div class="col-2 text-start">
+      <span class="btn btn-outline-primary btn-sm text-decoration-none">
+        <%= link_to "+ Add task", new_task_path %>
+      </span>
+    </div>
+    <div class="col-2 text-start pt-2">
+      <span class="text-primary text-decoration-none">
+        <%= link_to "< Go back", user_tasks_path %>
+      </span>
+    </div>
+    <div class="col-2 text-start pt-2">
+      <span class="text-primary text-decoration-none">
+        <%= link_to "Filter tasks", new_filter_path %>
+      </span>
+    </div>
+    <div class="col text-end">
+      <p class="text-muted  small-text">Welcome back <%= @user.email %> | <%= link_to "logout", destroy_user_session_path %></p>
+    </div>
+  </div>
+</div>
+<div id="tasks" class="card-body">
+  <div class="container p-0 m-0">
+    <div class="row align-items-start border-bottom border-light shadow-sm pb-2 px-3 small-text text-muted">
+      <div class="col align-items-start">
+        To-do 
+      </div>
+      <div class="col-1 text-center">
+        Priority
+      </div>
+      <div class="col-2 text-center">
+        Deadline
+      </div>
+    </div>
+    <% @tasks.each do |task| %>
+      <div class="row align-items-center border-bottom border-light px-3 pt-3">
+        <div class="col-1 text-center">
+        <i class="fas fa-check-circle <%= task.status == 'done' ? 'text-success' : 'text-primary' %>"></i>
+        </div>
+        <div class="col align-items-start">
+          <p class="fs-5 lh-1">
+            <%= task.title %>
+          </p>
+          <p class="fw-lighter link-primary lh-1 small-text">
+            <% @tags.each do |tag| %>
+              <% @taggables.each do |taggable| %>
+                <%= taggable.tag_id == tag.id && taggable.task_id == task.id ? (link_to tag.name, all_tasks_path(filter_by_tag_id: tag.id)) : '' %>
+              <% end %>
+            <% end %>
+            <span class="badge rounded-pill test-muted small-text <%= task.status == 'done' ? 'd-none' : '' %>">
+            <%= link_to change_status_task_path(task, status: :done), method: :patch, class: 'text-muted' do %>
+              Mark as done
+            <% end %>
+          </span>
+          </p>
+        </div>
+        <div class="col-1 text-center">
+        <span class="badge rounded-pill text-bg-warning">
+          <%= task.level %>
+        </span>
+        </div>
+        <div class="col-2 text-center text-success">
+          <span class="badge rounded-pill text-bg-primary">
+            <i class="fa-regular fa-calendar"></i>
+            &nbsp
+            <%= task.try(:deadline).try(:strftime, '%B %e') %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

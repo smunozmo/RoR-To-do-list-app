@@ -1,0 +1,26 @@
+<div class="card-header shadow-sm">
+  <div class="row align-items-start border-bottom border-light p-3 small-text text-muted">
+    <div class="col-2 align-items-start pt-1">
+      <h5>New tag</h5>
+    </div>
+    <div class="col-2 text-start">
+      <span class="btn btn-outline-primary btn-sm text-decoration-none">
+        <%= link_to "< Go back", new_task_path %>
+      </span>
+    </div>
+    <div class="col text-end">
+      <p class="text-muted  small-text">Welcome back <%= @user.email %> </p>
+    </div>
+  </div>
+</div>
+<div id="tags" class="card-body">
+  <%= form_with model: @tag, url: new_tag_path(user_id: @user), method: :post, class: 'form' do |form| %>
+    <div>
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_area :name, :required => true, class: 'form-control mb-3' %>
+    </div>
+
+      <%= form.submit "Add tag", class: 'btn btn-primary px-4 rounded-3' %>
+    </div>
+  <% end %>
+</div>
