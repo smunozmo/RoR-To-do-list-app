@@ -8,6 +8,7 @@ class TasksController < ApplicationController
     @tags = Tag.joins(:user).where(users: { id: @user.id })
   end
 
+  # rubocop:disable all
   def create
     if params[:taggable].blank?
       flash[:alert] = 'Please choose o create at least one tag and try again.'
@@ -40,6 +41,7 @@ class TasksController < ApplicationController
       end
     end
   end
+  # rubocop:enable all
 
   def change_status
     @task = Task.find(params[:id])

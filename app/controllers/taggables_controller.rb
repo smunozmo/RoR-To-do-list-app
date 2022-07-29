@@ -1,2 +1,2 @@
-class TaggablesController < 
+class TaggablesController < ApplicationController
 end

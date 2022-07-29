@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
   has_many :taggables
-  STATUSES = %i[to_do done]
+  STATUSES = %i[to_do done].freeze
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :title, presence: true
   validates :level, numericality: { in: 1..5 }, allow_blank: true
