@@ -11,7 +11,4 @@ module UsersHelper
       deadline: :asc, level: :desc
     )
   end
-
 end
-
-

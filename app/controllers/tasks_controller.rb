@@ -55,10 +55,9 @@ class TasksController < ApplicationController
     @tasks = Task.joins(:user).where(users: { id: params[:user_id] }).order(deadline: :asc, level: :desc)
     @tags = Tag.joins(:user).where(users: { id: params[:user_id] })
     @taggables = Taggable.all
-   
-    #see TasksHelper
+
+    # see TasksHelper
     filter_by_params
- 
   end
 
   def new_filter

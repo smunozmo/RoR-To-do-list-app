@@ -79,4 +79,4 @@ gem 'rubocop-rails', '~> 2.15'
 
 gem 'bullet', '~> 7.0'
 
-gem "rspec-rails", "~> 5.1"
+gem 'rspec-rails', '~> 5.1'

@@ -6,7 +6,6 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :level, numericality: { in: 1..5 }, allow_blank: true
   validates :deadline, format: { with: /[a-zA-Z]/ }
-  validates :status, inclusion: { in: %w(to_do done),
-    message: "%{value} is not a valid status" }, allow_blank: true
-  
+  validates :status, inclusion: { in: %w[to_do done],
+                                  message: '%<value>s is not a valid status' }, allow_blank: true
 end
